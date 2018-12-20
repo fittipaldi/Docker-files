@@ -1,0 +1,20 @@
+FROM node:8-alpine
+ENV NODE_VERSION 6.14.3
+
+MAINTAINER fittipaldi.gustavo@gmail.com
+
+RUN apt-get update
+RUN apt-get install nano
+RUN apt-get install git
+RUN apk add --update build-base python
+RUN yarn
+
+RUN mkdir /var/www/node
+WORKDIR /var/www/node
+
+RUN adduser -D -h /home/term -s /bin/sh term && \
+    ( echo "term:term" | chpasswd ) && \
+	apk add openssh-client && \
+	apk add sshpass
+USER term
+EXPOSE 3100

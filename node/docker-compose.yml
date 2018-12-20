@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  node_new:
+    image: xtermjs/xterm.js:latest
+    volumes:
+        - .:/var/www/node
+ 
